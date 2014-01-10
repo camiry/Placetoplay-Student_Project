@@ -1,0 +1,45 @@
+{% extends "base_template.html" %}
+       {% block content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4 elo text-center">
+                    <ul class="list-unstyled">
+                    {% if search%}
+                        {% for game in search_game %}
+                        <img src="{{ game.image_path }}" style="width: 75px; height: 75px; display-inline;"/>
+                        <li><a href="/games/{{ game.id }}">{{ game.name }}</a></li><br>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <ul class="list-unstyled">
+                        {% for game in games %}
+                        <img src="{{ game.image_path }}" style="width: 75px; height: 75px; display-inline;"/>
+                        <li><a href="/games/{{ game.id }}">{{ game.name }}</a></li><br>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    <span class="step-links">
+                        {% if games.has_previous %}
+                            <a href="?page={{ games.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ games.number }} of {{ games.paginator.num_pages }}
+                        </span>
+
+                        {% if games.has_next %}
+                            <a href="?page={{ games.next_page_number }}">Next</a>
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="col-md-offset-1 col-md-3">
+                    <form method="get" action="/games/">
+                        <input type="text" name="gamesearch" placeholder="Search for games!">
+                        <input type="submit" value="Search!" class="btn btn-warning">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endblock %}

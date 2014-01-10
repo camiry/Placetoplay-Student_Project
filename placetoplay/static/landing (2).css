@@ -1,0 +1,57 @@
+ul.signup
+{
+	text-align: right;
+	list-style-type: none;
+}
+
+.signup li, .navbar li {display: inline;}
+
+h1, h1 + h2 
+{
+	text-align: center;
+}
+
+#mapsAPI
+{
+	display: inline-block;
+	border: 1px solid black;
+	width: 40%;
+	padding-bottom: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#popnewLists
+{
+	width: 25%;
+	border: 1px solid black;
+	float: left;
+	padding-bottom: 400px;
+}
+
+.ads
+{
+	border: 1px solid black;
+	width: 25%;
+	float: right;
+	padding-bottom: 300px;
+	margin-right: 100px;
+}
+
+#maplist
+{
+	margin-left: 474px;
+	margin-right: auto;
+	border: 1px solid black;
+	width: 40%;
+	padding-bottom: 300px;
+}
+
+.specof
+{
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	padding-bottom: 100px;
+}

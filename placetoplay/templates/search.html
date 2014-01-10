@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Cyrus Amiry">
+	<meta charset="UTF=8">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/custom-theme-prof.css"/>
+</head>
+
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="col-md-2">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signin_view' %}">Log in</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signup_view' %}">Sign up</a></li>
+                <li class="btn btn-sm"><a href="{% url 'placetoplay.views.logout_view' %}">Log Out</a></li>
+			</ul>
+		</div>
+		<div class="col-md-offset-5 col-md-5">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.base' %}">Home</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.profile' %}">Profile</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.search_home' %}">Search for groups</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.gamelist_view' %}">Search for games</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-4 navbar-form navbar-right form-groups">
+                <form action="/group_search/" method="get">
+                    <input type="text" name="groupsearch" id="search" placeholder="Search for groups!" >
+                    <input type="submit" value="Search!" class="btn btn-warning">
+                </form>
+			</div>
+            <div class="col-md-2">
+                <a class="btn btn-lg btn-success" href="{% url 'placetoplay.views.group_signup' %}">Create a group!</a>
+            </div>
+		</div>
+        <br>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="nav nav-pills nav-stacked text-left elo">
+                    <form action="/group_search/" method="get">
+                        <input value="Show all groups" type="submit" name="show_all" class="btn btn-link"/>
+                    </form>
+                    <br>
+                    <form>
+                        <input value="Show by games played" type="submit" name="show_all" class="btn btn-link"/>
+                    </form>
+                    <br>
+                    <form>
+                        <input value="Show by member size" type="submit" name="show_all" class="btn btn-link"/>
+                    </form>
+                    <br>
+                    <form>
+                        <input value="Show by skill level" type="submit" name="show_all" class="btn btn-link"/>
+                    </form>
+                    <br>
+                    <form>
+                        <input value="Show by proximity" type="submit" name="show_all" class="btn btn-link"/>
+                    </form>
+				</div>
+				<br><br>
+
+			</div>
+
+
+            <div class="col-md-4 col-md-offset-1 elo">
+                <h3>Please use the search function to find groups!</h3>
+            </div>
+			
+			<div class="col-md-offset-1 col-md-4 text-center elo">
+				<h3>Friends: </h3>
+                <hr>
+                <ul class="list-unstyled">
+                {% for friend in friends %}
+                <li><a href="/profile/{{ friend.user_link.id }}/">{{ friend.user_link.username }}</a></li>
+                {% endfor %}
+                </ul>
+			</div>
+        </div>
+	</div>
+<script src="/static/jquery-1.10.2.min.js"></script>
+<script src="/static/maps.js"></script>
+</body>
+</html>

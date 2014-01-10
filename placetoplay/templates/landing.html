@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Cyrus Amiry">
+	<meta charset="UTF=8">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/custom-theme-prof.css">
+	<!--<link rel="stylesheet" href="css/custom-theme.css">-->
+</head>
+<body>
+<!--these items are the top of the page and involve navigation and sign in-->
+	<div class="navbar navbar-inverse">
+		<div class="col-md-4">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signin_view' %}">Log in</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signup_view' %}">Sign up</a></li>
+                {% if user.is_authenticated %}
+                <li class="btn btn-sm"><a href="{% url 'placetoplay.views.logout_view' %}">Log Out</a></li>
+                {% endif %}
+			</ul>
+		</div>
+		<div class="col-md-offset-3 col-md-5">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.base' %}">Home</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.profile' %}">Profile</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.search_home' %}">Search for groups</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.gamelist_view' %}">Search for games</a></li>
+			</ul>
+		</div>
+	</div>
+<!--This is the main body; contains ads, map api and general lists-->	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 elo">
+				<h3>Popular Games</h3><hr>
+				<ul id="popList" class="list-unstyled">
+                    {% for game in gamesPop %}
+                    <a href="/games/{{ game.id }}">{{ game.name }}</a><br><br>
+                    {% endfor %}
+				</ul>
+				<h3>New Games</h3><hr>
+				<ul id="newList" class="list-unstyled">
+                    {% for date in gamesNew %}
+                    <a href="/games/{{ date.id }}">{{ date.name }}</a><br><br>
+                    {% endfor %}
+				</ul>
+			</div>
+		
+			<div class="col-md-5 col-md-offset-1 text-center elo">
+				<div class="">
+					<h1>A Place to Play</h1>
+					<h2>Find a place to play near you!</h2>
+				</div>
+				
+				<div id="maplist" class="text-center">
+                    <h2>Events going on right now!</h2>
+                    {% if group %}
+					<img src="http://maps.googleapis.com/maps/api/staticmap?center=37.692141,-122.206421&zoom=9&size=450x500&sensor=false&{% for event in group %}markers=color:red|label:G|{{ event.address }}&{% endfor %}" style="margin: 0px auto;">
+					<dl>
+                        {% for event in group %}
+						<dt><a href="/group/{{ event.id }}/">{{ event.name }}</a></dt>
+							<dd>{{ event.region }}</dd>
+							<dd>{{ event.schedule_event }}</dd>
+							<br>
+                        {% endfor %}
+					</dl>
+                    {% else %}
+                    <p>No events are going on quite yet...</p>
+                    {% endif %}
+				</div>
+			</div>
+			
+			<div class="col-md-3 col-md-offset-1 elo">
+				<h3>Power Users:</h3>
+                <ul class="list-unstyled">
+                    {% if userp %}
+                    <li><a href="/profile/{{ userp.user_link.id }}/">{{ userp.user_link.username }}</a></li>
+                    {% else %}
+                    <p>No power users yet...</p>
+                    {% endif %}
+                </ul>
+			</div>
+		</div>
+		<br>
+	</div>
+<script src="/static/jquery-1.10.2.min.js"></script>
+<script src="/static/faker.js"></script>
+<script src="/static/map.js"></script>
+</body>
+</html>

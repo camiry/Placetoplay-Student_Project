@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Cyrus Amiry">
+	<meta charset="UTF=8">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/custom-theme-sign.css"/>
+</head>
+
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="col-md-2">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signin_view' %}">Log in</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signup_view' %}">Sign up</a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 col-md-offset-6">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.base' %}">Home</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.profile' %}">Profile</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.search_home' %}">Search for groups</a></li>
+			</ul>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 elo">
+                <div class="form-group">
+                    <form method="POST" class="form-horizontal">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Sign up!" class="btn btn-lg btn-warning"/>
+                    </form>
+                </div>
+			</div>
+			
+			<div class="col-md-4 col-md-offset-4 elo">
+				<p>Our list of supported sponsors/retailers/bars etc go here.</p>
+				<img src="/static/download.jpg">
+				<img src="/static/oaks.jpg">
+				<img src="/static/fpl.png" class="img-responsive">
+			</div>
+		</div>
+	</div>
+<script>
+    document.getElementById("id_event_time").onkeyup = function() {
+       var datetime = document.getElementById('id_event_time').value;
+       console.log(datetime);
+    }
+
+</script>
+</body>
+</html>

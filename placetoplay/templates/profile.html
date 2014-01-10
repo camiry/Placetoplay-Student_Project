@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Cyrus Amiry">
+	<meta charset="UTF=8">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/custom-theme-prof.css">
+</head>
+
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="col-md-2">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signin_view' %}">Log in</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signup_view' %}">Sign up</a></li>
+                <li class="btn btn-sm"><a href="{% url 'placetoplay.views.logout_view' %}">Log Out</a></li>
+			</ul>
+		</div>
+		<div class="col-md-offset-5 col-md-5">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.base' %}">Home</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.profile' %}">Profile</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.search_home' %}">Search for groups</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.gamelist_view' %}">Search for games</a></li>
+			</ul>
+		</div>
+	</div>
+	
+
+	<div class="container">
+		<div class="row">
+			<div>
+				<img src="{{ profile_user.extension.image_path }}" class="img-rounded col-md-4">
+			</div>
+			<div class="col-md-4 col-md-offset-1 elo">
+				<h1>{{ profile_user.first_name }} {{ profile_user.last_name }}</h1>
+			</div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-2">
+                {% if own_user %}
+                <a class="btn btn-warning" href="{% url 'placetoplay.views.edit_profile' %}">Edit Profile</a>
+                {% else %}
+
+                {% endif %}
+            </div><br>
+
+		</div><br>
+		<div class="row">
+			<div class="col-md-4 elo">
+				<h3>Groups: </h3><hr>
+				<ul class="list-unstyled" id="fList">
+                    {% for group in schedule %}
+                        <li><a href="/group/{{ group.id }}/">{{ group.name }}</a></li><br>
+                    {% endfor %}
+                    <br>
+				</ul>
+			</div>
+			
+			<div class="col-md-6 col-md-offset-1 elo">
+				<h3>About me:</h3>
+				<dl class="list-unstyled">
+					<dt>Location</dt>
+						<dd>{{ profile_user.extension.city }}</dd>
+						<br>
+					<dt>Game preferences</dt>
+						<dd>{{ profile_user.extension.game_pref1 }}</dd>
+						<dd>{{ profile_user.extension.game_pref2 }}</dd>
+                        <dd>{{ profile_user.extension.game_pref3 }}</dd>
+                        <br>
+					<dt>Characteristics & Habits</dt>
+						<dd>{{ profile_user.extension.characteristics }}</dd>
+                        <br>
+					<dt>Skill level/Experience</dt>
+						<dd>{{ profile_user.extension.skill }}</dd><br>
+					<dt>Contact info</dt>
+                        {% if friend_verification %}
+                        <dd>{{ profile_user.email }}</dd>
+						<dd>{{ profile_user.extension.phone }}</dd>
+						<dd>{{ profile_user.extension.facebook }}</dd>
+                        {% else %}
+				        <p>User has restricted access to friends.</p>
+                        {% endif %}
+				</dl>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 elo">
+				<h4>Online Friends: </h4>
+                <hr>
+				<ol class="list-unstyled">
+                {% for friend in friends %}
+                    <li><a href="/profile/{{ friend.user_link.id }}">{{ friend.user_link.username }}</a></li><br>
+                {% endfor %}
+                    <a class="btn btn-sm btn-warning" href="{% url 'placetoplay.views.view_friends' %}">View all friends</a>
+				</ol>
+			</div>
+			<div class="col-md-6 col-md-offset-1 elo">
+				<h3>Your Scheduled Events</h3><hr>
+				<dl>
+                    {% for event in schedule %}
+					<dt><a href="">{{ event.name }}</a></dt>
+						<dd>{{ event.address }}</dd>
+						<dd>This event starts on {{ event.schedule_date }} at {{ event.schedule_time }}</dd>
+						<br>
+                    {% endfor %}
+				</dl>
+				
+				<div class="text-center">
+					<img src="http://maps.googleapis.com/maps/api/staticmap?center=37.692141,-122.206421&zoom=9&size=450x500&sensor=false&{% for event in schedule %}markers=color:red|label:G|{{ event.address }}&{% endfor %}" style="margin: 0px auto;">
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="/static/jquery-1.10.2.min.js"></script>
+<script src="/static/faker.js"></script>
+</body>
+</html>

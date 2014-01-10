@@ -1,0 +1,30 @@
+body {background: url('wooddice.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+  }
+
+.elo
+{
+	background-color: #181818;
+	border-radius: 8px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	opacity: 0.9;
+}
+
+#calendar
+{
+	padding-top:5px;
+	padding-bottom: 5px;
+	border-radius: 10px;
+}
+
+.text-center
+{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+

@@ -1,0 +1,29 @@
+ul.signup
+{
+	text-align: right;
+	list-style-type: none;
+}
+
+.signup li, .navbar li {display: inline;}
+
+.bar
+{
+	float: right;
+	border: 1px solid black;
+	display: block;
+}
+
+.check
+{
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+	width: 40%;
+}
+
+.social
+{
+	border: 1px solid black;
+	display: inline-block;
+	padding-bottom: 400px;
+}

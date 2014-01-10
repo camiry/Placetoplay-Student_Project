@@ -1,0 +1,27 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-offset-8 col-md-4">
+            <form action="/friend_search/" method="get">
+                <input type="text" name="friend_search" id="search" placeholder="Search for friends!">
+                <input type="submit" value="Search" class="btn btn-warning">
+            </form>
+        </div>
+    </div>
+   <br><hr>
+    <div class="row">
+            <div class="col-md-offset-4 col-md-4 text-center elo">
+            <h1>Friends</h1>
+            <hr>
+            <ul class="list-unstyled">
+                {% for friend in friends %}
+                <li>
+                <a href="/profile/{{ friend.user_link.id }}/" class="">{{ friend.user_link.username }}</a>
+                <a href="/friend_search/delete/{{ friend.user_link.id }}/" class="btn-sm btn-warning">Defriend user</a>
+                </li>
+                <br>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

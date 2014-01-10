@@ -1,0 +1,30 @@
+ul.signup
+{
+	text-align: right;
+	list-style-type: none;
+}
+
+.signup li, .navbar li {display: inline;}
+
+h1, h1 + h2 
+{
+	text-align: center;
+}
+
+.abtu, .places
+{
+	width: 40%;
+	float: right;
+	margin-right: 600px;
+	border: 1px solid black;
+	padding-bottom: 550px;
+}
+
+.friends, .xbox
+{
+	width: 25%;
+	float: left;
+	padding-bottom: 300px;
+	border: 1px solid black;
+}
+

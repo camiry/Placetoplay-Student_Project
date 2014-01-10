@@ -1,0 +1,16 @@
+.sponsor
+{
+	width: 40%;
+	float: right;
+}
+.signup
+{
+	display: inline-block;
+}
+ul
+{
+	text-align: right;
+	list-style-type: none;
+}
+
+li {display: inline;}

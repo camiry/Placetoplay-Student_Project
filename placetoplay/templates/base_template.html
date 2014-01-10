@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Place to Play</title>
+    <meta name="author" content="Cyrus Amiry">
+	<meta charset="UTF=8">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/custom-theme-prof.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse">
+		<div class="col-md-2">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signin_view' %}">Log in</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signup_view' %}">Sign up</a></li>
+                {% if user.is_authenticated %}
+                <li class="btn btn-sm"><a href="{% url 'placetoplay.views.logout_view' %}">Log Out</a></li>
+                {% endif %}
+			</ul>
+		</div>
+		<div class="col-md-offset-5 col-md-5">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.base' %}">Home</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.profile' %}">Profile</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.search_home' %}">Search for groups</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.gamelist_view' %}">Search for games</a></li>
+			</ul>
+		</div>
+	</div>
+<!-- ************************************************ -->
+    {% block content %}{% endblock %}
+    <script src="/static/jquery-1.10.2.min.js"></script>
+    <script src="/static/faker.js"></script>
+    <script src="/static/map.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Cyrus Amiry">
+	<meta charset="UTF=8">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/custom-theme-prof.css">
+</head>
+
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="col-md-2">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signin_view' %}">Log in</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.signup_view' %}">Sign up</a></li>
+                <li class="btn btn-sm"><a href="{% url 'placetoplay.views.logout_view' %}">Log Out</a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 col-md-offset-6">
+			<ul class="list-inline">
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.base' %}">Home</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.profile' %}">Profile</a></li>
+				<li class="btn btn-lg"><a href="{% url 'placetoplay.views.search_home' %}">Search for groups</a></li>
+                <li class="btn btn-lg"><a href="{% url 'placetoplay.views.gamelist_view' %}">Search for games</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div>
+                    <img src="/static/{{ editExt.image_path }}" class="img-rounded col-md-4"/>
+                </div>
+                <div class="col-md-4 col-md-offset-1 elo">
+                    <h1>{{ edit.first_name }} {{ edit.last_name }}</h1>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>{{ editExt.image_path }} {{edit.username }}</p><!--REMEMBER TO MOVE USERNAME FIELD SOMEWHERE ELSE -->
+                    <input type="submit" value="Save Changes" class="btn btn-lg btn-warning" />
+                </div>
+            </div><br>
+
+            <div class="row">
+                <div class="col-md-4 elo">
+                    <h3>Your friends: </h3><hr>
+
+                    <ul class="list-unstyled" id="fList">
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-md-offset-1 elo">
+                    <h3>About me:</h3>
+                    <dl class="list-unstyled">
+                        <dt>Location</dt>
+                            <dd>{{ editExt.city }}</dd>
+                            <br>
+                        <dt>Game preferences</dt>
+                            <dd>{{ editExt.game_pref1 }}</dd>
+                            <dd>{{ editExt.game_pref2 }}</dd>
+                            <dd>{{ editExt.game_pref3 }}</dd>
+                            <br>
+                        <dt>Characteristics & Habits</dt>
+                            <dd>{{ editExt.characteristics }}</dd>
+                            <br>
+                        <dt>Skill level/Experience</dt>
+                            <dd>{{ editExt.skill }}</dd><br>
+                        <dt>Contact info</dt>
+                            <dd>{{ edit.email }}</dd>
+                            <dd>{{ editExt.phone }}</dd>
+                            <dd>{{ editExt.facebook }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </form>
+	</div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 elo">
+				<h4>Trophy Wall: </h4><hr>
+				<ol>
+					<li><strong>1st place at Eudemonia's MtG Tournament</strong></li><br>
+					<li>Broke $500 at Oaks in cash game</li>
+					<li>Honorable mention at Chess Group competition</li>
+					<li>Played Blackjack for 5 hours at Oaks Card Club</li>
+					<br>
+					<button onclick="" class="btn btn-sm btn-warning">Compare!</button>
+				</ol>
+			</div>
+			<div class="col-md-6 col-md-offset-1 elo">
+				<h3>Your Current Groups</h3><hr>
+				<dl>
+					<dt><a href="">Magic: The Gathering Berkeley Club</a></dt>
+						<dd>2154 University Ave, Berkeley CA 94704</dd>
+						<dd>Local group of MtG players that meet weekly</dd>
+						<br>
+					<dt><a href="">The Poker Guys</a></dt>
+						<dd>26 Shannon Circle, Alameda CA 94502</dd>
+						<dd>We play poker n stuff</dd>
+						<br>
+				</dl>
+
+				<div class="text-center">
+					<img src="http://maps.googleapis.com/maps/api/staticmap?center=37.692141,-122.206421&zoom=10&size=450x500&sensor=false&markers=color:red|label:G|2154+University+Ave,Berkeley+CA+94704&markers=color:red|label:G|26+Shannon+Circle,Alameda+CA+94502" style="margin: 0px auto;">
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="/static/jquery-1.10.2.min.js"></script>
+<script src="/static/faker.js"></script>
+<script src="/static/fakefriends.js"></script>
+</body>
+</html>

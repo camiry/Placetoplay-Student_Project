@@ -1,0 +1,62 @@
+{% extends "base_template.html" %}
+       {% block content %}
+
+        <div class="container">
+            <div class="row">
+                <img src="{{ profile_group.image_path }}" class="img-rounded col-md-4">
+                <div class="col-md-4 elo">
+                    <h1>{{ profile_group.name }}</h1>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-2 elo">
+                   <h4>Members: </h4>
+                   <hr>
+                   <ul class="list-unstyled">
+                   {% for member in members %}
+                       <li><a href="/profile/{{ member.id }}/">{{ member.user_link.username }}</a></li><br>
+                   {% endfor %}
+                   </ul>
+                </div>
+                <div class="col-md-3 col-md-offset-1 elo">
+                    <dl class="list-unstyled">
+                    {% if public_group %}
+					<dt>City:</dt>
+						<dd>{{ profile_group.region }}</dd>
+                        <br>
+					<dt>Special House Rules:</dt>
+						<dd>{{ profile_group.special_rules }}</dd>
+                        <br>
+					<dt>Skill level/Experience</dt>
+						<dd>{{ profile_group.skill_level }}</dd><br>
+					<dt>Contact info</dt>
+                        <dd>{{ profile_group.email }}</dd>
+						<dd>{{ profile_group.phone }}</dd>
+                        <br>
+                    <dt>What we do:</dt>
+                        <dd>{{ profile_group.schedule_event }}</dd>
+                        <br>
+                    <dt>Games we play:</dt>
+                        <dd>{{ profile_group.games }}</dd>
+				</dl>
+                    {% else %}
+                    <dt>Access restricted</dt>
+                    {% endif %}
+                </div>
+                <div class="col-md-offset-1 col-md-5 elo text-center">
+                    <h2>Our next scheduled event is on {{ profile_group.schedule_date }} at {{profile_group.schedule_time }}</h2>
+                    <img src="http://maps.googleapis.com/maps/api/staticmap?center=37.692141,-122.206421&zoom=10&size=450x500&sensor=false&markers=color:red|label:A|{{ location }}" style="margin: 0px auto;">
+                    {% if public_group %}
+                    <ul class="list-unstyled">
+                        <li>We meet on: {{ profile_group.schedule_date }}</li>
+                        <li>At: {{profile_group.schedule_time }}</li>
+                        <li>In: {{profile_group.address }}</li>
+                    </ul>
+                    {% else %}
+				        <p>User has restricted access to members.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endblock %}

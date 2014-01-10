@@ -1,0 +1,21 @@
+{% extends "base_template.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-6 text-center elo">
+        <h4>You searched for: {{query}}. Here are the results!</h4>
+        <hr>
+        {% if friends %}
+        <ul class="list-unstyled">
+            {% for friend in friends %}
+            <li>
+                <a href="/friend_search/add/{{friend.id}}">
+                {{friend.username}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

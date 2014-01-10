@@ -1,0 +1,36 @@
+{% extends "base_template.html" %}
+       {% block content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 elo text-left">
+                    <img src="{{ game.image_path }}" class="img-rounded img-responsive center-block" style="width: 400px; height: auto;" />
+                    <br>
+                    <p>{{ description }}</p><br>
+                    <dl>
+                        <dt>Made by:</dt>
+                        <dd>{{ game.maker }}</dd>
+                        <br>
+                        <dt>Category:</dt>
+                        <dd>{{ game.category }}</dd>
+                        <br>
+                        <dt>Mechanics:</dt>
+                        <dd>{{ game.mechanics }}</dd>
+                        <br>
+                        <dt>Published on:</dt>
+                        <dd>{{ game.date_published }}</dd>
+                        <br>
+                        <dt>Average user rating:</dt>
+                        <dd>{{ game.average_rating }}</dd>
+                        <br>
+                        <dt>Average playtime:</dt>
+                        <dd>{{ game.playtime }}</dd>
+                        <br>
+                        <dt>Optimum player age:</dt>
+                        <dd>{{ game.optimal_age }}</dd>
+                    </dl>
+                    <br>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
